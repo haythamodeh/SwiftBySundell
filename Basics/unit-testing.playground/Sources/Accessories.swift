@@ -35,6 +35,14 @@ public class ShoppingCart {
     public func add(_ product: Product) {
         products.append(product)
     }
+
+    public func applyCouponToEntireCart(_ coupon: Coupon) {
+        let multiplier = 1 - coupon.discount / 100
+
+        for index in products.indices {
+            products[index].price *= multiplier
+        }
+    }
 }
 
 public extension ShoppingCart {

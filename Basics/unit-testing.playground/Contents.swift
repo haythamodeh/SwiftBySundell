@@ -54,6 +54,20 @@ class ShoppingCartTests: XCTestCase {
         // Then
         XCTAssertEqual(shoppingCart.totalPrice, 35)
     }
+
+    func testCalculatingTotalPriceWithCoupon() {
+        // Given: Here we assert that our initial state is correct
+        XCTAssertEqual(shoppingCart.totalPrice, 0)
+
+        // When
+        shoppingCart.add(Product(name: "Book", price: 20))
+        shoppingCart.add(Product(name: "Movie", price: 15))
+        let coupon = Coupon(name: "Holiday Sale", discount: 20)
+        shoppingCart.applyCouponToEntireCart(coupon)
+
+        // Then
+        XCTAssertEqual(shoppingCart.totalPrice, 28)
+    }
 }
 
 // --- Running all of our unit tests within the playground ---
